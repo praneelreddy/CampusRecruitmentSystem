@@ -1,0 +1,136 @@
+
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        #customers {
+          font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+        }
+        
+        #customers td, #customers th {
+          border: 1px solid #ddd;
+          padding: 8px;
+        }
+        
+        #customers tr:nth-child(even){background-color: #f2f2f2;}
+        
+        #customers tr:hover {background-color: rgb(255, 239, 11);}
+        
+        #customers th {
+          padding-top: 12px;
+          padding-bottom: 12px;
+          text-align: left;
+          background-color: rgb(0, 0, 0);
+          color: white;
+        }
+        </style>
+</head>
+<body>   
+   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="http://www.gmrit.org/">GMRIT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="http://127.0.0.1:8000/">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="http://127.0.0.1:8000/student/student_login/">Student<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item active">
+              <a class="nav-link" href="http://127.0.0.1:8000/company/company_login/">Company<span class="sr-only">(current)</span></a>
+            </li>
+            <table class="topnav" >
+                <tr>
+                <td class="d" style="padding-left: 7.23rem">
+                    {% if user.is_authenticated %}
+                
+                        <a  class="nav-link" href="http://127.0.0.1:8000/logout/">LOGOUT</b></a>
+                
+                {% else %}
+
+                    {% endif %}
+                </td>
+                </tr>
+                </table>
+
+      </ul>
+
+    </div>
+
+  </nav>
+<form method="get">
+    {% csrf_token %}
+    <center><h2>STUDENT DASHBOARD</h2></center>
+    <table id="customers">
+        <tr>
+          <th>Fields</th>
+          <th>Data</th>
+        </tr>
+        <tr>
+          <td>Registration Number</td>
+          <td><b>{{ post.username }}</b></td>
+        </tr>
+        <tr>
+          <td>Student Name</td>
+          <td><b>{{ post.name}}</b></td>
+        </tr>
+        <tr>
+          <td>Father Name</td>
+          <td><b>{{ post.fathers_name}}</b></td>
+        </tr>
+        <tr>
+          <td>Mother Name</td>
+          <td><b>{{ post.mothers_name}}</b></td>
+        </tr>
+        <tr>
+          <td>Gender</td>
+          <td><b>{{ post.gender}}</b></td>
+        </tr>
+        <tr>
+          <td>City</td>
+          <td><b>{{ post.place}}</b></td>
+        </tr>
+        <tr>
+          <td>Branch</td>
+          <td><b>{{ post.branch}}</b></td>
+        </tr>
+        <tr>
+          <td>Engineering CGPA</td>
+          <td><b>{{ post.cgpa_Btech}}</b></td>
+        </tr>
+        <tr>
+          <td>10thClass CGPA</td>
+          <td><b>{{ post.class_10_cgpa}}</b></td>
+        </tr>
+        <tr>
+            <td>Intermediate Percentage</td>
+            <td><b>{{ post.class_12_percentage}}</b></td>
+          </tr>
+          <tr>
+              <td>Work Experience</td>
+              <td><b>{{ post.internship}}</b></td>
+            </tr>
+            <tr>
+                <td>Programming Languages Known</td>
+                <td><b>{{ post.languages}}</b></td>
+              </tr>
+              <tr>
+                  <td>Statement of Purpose</td>
+                  <td><b>{{ post.sop}}</b></td>
+                </tr>
+                <tr>
+                    <td>Date of Birth</td>
+                    <td><b>{{ post.dob}}</b></td>
+                  </tr>
+      </table>
+</form>
+</body>

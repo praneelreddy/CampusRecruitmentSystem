@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>APPLY FOR AJOB</title>
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+
+
+</head>
+<body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <a class="navbar-brand" href="http://www.gmrit.org/">GMRIT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+              
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                      <a class="nav-link" href="http://127.0.0.1:8000/">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="http://127.0.0.1:8000/student/student_login/">Student<span class="sr-only">(current)</span></a>
+                      </li>
+                      <li class="nav-item active">
+                          <a class="nav-link" href="http://127.0.0.1:8000/company/company_login/">Company<span class="sr-only">(current)</span></a>
+                        </li>
+                        <table class="topnav" >
+                            <tr>
+                            <td class="d" style="padding-left: 7.23rem">
+                                {% if user.is_authenticated %}
+                            
+                                    <a  class="nav-link" href="http://127.0.0.1:8000/logout/">LOGOUT</b></a>
+                            
+                            {% else %}
+        
+                                {% endif %}
+                            </td>
+                            </tr>
+                            </table>
+        
+                  </ul>
+        
+                </div>
+        
+              </nav>
+<div class="container">
+        <center><h3>CHOOSE YOUR DREAM COMPANY</h3></center>
+        <form method="post">
+                {% csrf_token %}
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="number">MINIMUM SALARY:</label>
+            <div class="col-sm-10">
+              <input type="number" class="form-control" id="email" placeholder="MINIMUM SALARY" name="salary">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="number">MAXIMUM BOND YEARS:</label>
+            <div class="col-sm-10">          
+              <input type="number" class="form-control" id="pwd" placeholder="MAXIMUM BOND YEARS" name="years">
+            </div>
+          </div>
+          <div class="form-group">        
+            <div class="col-sm-offset-2 col-sm-10">
+              <button type="submit" class="btn btn-default">SEARCH</button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div></div>
+      <br><br><br>
+     <table border="1px"   width="100% " >
+        <tr >
+            <th style="font-size:1.5rem;color: #ffc107">COMPANY</th>
+            <th style="font-size:1.5rem;color: #ffc107">POST</th>
+                 <th style="font-size:1.5rem;color: #ffc107">SALARY</th>
+            <th style="font-size:1.5rem;color: #ffc107">BOND PERIOD</th>
+            <th style="font-size:1.5rem;color:rgb(19, 228, 0)">SELECTION</th>
+
+        </tr>
+        {%  for i in y %}
+        <tr>
+            <td>{{ i.company_name }}</td>
+        <td>{{ i.designation }}</td>
+        <td>{{ i.salary }}</td>
+        <td>{{ i.bond_years }}</td>
+            <td><a href="http://127.0.0.1:8000/student/student_login/applyjob/{{ i.job_id }}/" target="popup" onclick="window.open('http://127.0.0.1:8000/student/student_login/applyjob/{{ i.job_id }}/','popup','width=600,height=600'); return false;" style="font-family: Comic Sans MS, cursive, sans-serif">APPLY</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+
+
+</form>
+</body>
+</html>
